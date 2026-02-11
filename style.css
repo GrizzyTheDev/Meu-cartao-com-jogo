@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    
+    display: flex;
+    flex-direction: column; 
+    align-items: center;  
+    justify-content: center; 
+    gap: 20px;           
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.cartao-jogo {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+#snakeGame {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.cartao {
+
+    background: rgba(255, 255, 255, 0.2); 
+    
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    color: white;
+    padding: 30px;
+    
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    border-radius: 20px;
+    text-align: center;
+    width: 320px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+}
+
+.foto {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.link {
+    display: block;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.link:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.jogo-container {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+#snakeGame {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    margin: 10px 0;
+    display: block;
+    width: 100%;
+}
+
+#placar {
+    font-size: 0.9rem;
+    font-weight: bold;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Perfil Profissional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="cartao">
+        <img src="https://avatars.githubusercontent.com/u/98723420?v=4" alt="Foto de Perfil" class="foto">
+        <h1>Eric Hudson</h1>
+        <p>Futuro Desenvolvedor Front-End</p>
+
+        <div class="botoes-redes">
+            <a href="https://github.com/GrizzyTheDev" class="link">Meu GitHub</a>
+            <a href="https://linkedin.com" class="link">Meu LinkedIn</a>
+        </div>
+    </div>
+
+    <div class="cartao-jogo">
+        <p>Tédio? Jogue a Cobrinha! 🐍</p>
+        <canvas id="snakeGame" width="300" height="300"></canvas>
+        <p id="placar">Pontos: 0</p>
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById("snakeGame");
+const ctx = canvas.getContext("2d");
+const placarElemento = document.getElementById("placar");
+
+const box = 20;
+const tamanhoGrade = 15; 
+
+let pontos = 0;
+let cobra = [{ x: 7, y: 7 }];
+let direcao = "";
+let jogoRodando = false;
+
+let comida = {
+    x: Math.floor(Math.random() * tamanhoGrade),
+    y: Math.floor(Math.random() * tamanhoGrade)
+};
+
+document.addEventListener("keydown", (e) => {
+
+    if(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+        jogoRodando = true;
+    }
+
+    if (e.key === "ArrowUp" && direcao !== "DOWN") direcao = "UP";
+    if (e.key === "ArrowDown" && direcao !== "UP") direcao = "DOWN";
+    if (e.key === "ArrowLeft" && direcao !== "RIGHT") direcao = "LEFT";
+    if (e.key === "ArrowRight" && direcao !== "LEFT") direcao = "RIGHT";
+});
+
+function desenhar() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < cobra.length; i++) {
+        ctx.fillStyle = (i === 0) ? "#23d5ab" : "#1b9e7e";
+        ctx.fillRect(cobra[i].x * box, cobra[i].y * box, box - 2, box - 2);
+    }
+
+    ctx.fillStyle = "#ff3e3e";
+    ctx.fillRect(comida.x * box, comida.y * box, box - 2, box - 2);
+
+    if (!jogoRodando) return;
+
+    let cobraX = cobra[0].x;
+    let cobraY = cobra[0].y;
+
+    if (direcao === "UP") cobraY--;
+    if (direcao === "DOWN") cobraY++;
+    if (direcao === "LEFT") cobraX--;
+    if (direcao === "RIGHT") cobraX++;
+
+    if (cobraX === comida.x && cobraY === comida.y) {
+        pontos += 10;
+        placarElemento.innerText = "Pontos: " + pontos;
+        comida = {
+            x: Math.floor(Math.random() * tamanhoGrade),
+            y: Math.floor(Math.random() * tamanhoGrade)
+        };
+    } else {
+        cobra.pop();
+    }
+
+    let novaCabeca = { x: cobraX, y: cobraY };
+
+    if (cobraX < 0 || cobraX >= tamanhoGrade || cobraY < 0 || cobraY >= tamanhoGrade || checarColisao(novaCabeca, cobra)) {
+        jogoRodando = false;
+        alert("Game Over! Pontos: " + pontos);
+
+        reiniciarJogo();
+        return;
+    }
+
+    cobra.unshift(novaCabeca);
+}
+
+function checarColisao(cabeca, corpo) {
+    for (let i = 0; i < corpo.length; i++) {
+        if (cabeca.x === corpo[i].x && cabeca.y === corpo[i].y) return true;
+    }
+    return false;
+}
+
+function reiniciarJogo() {
+    pontos = 0;
+    placarElemento.innerText = "Pontos: 0";
+    cobra = [{ x: 7, y: 7 }];
+    direcao = "";
+    jogoRodando = false;
+}
+
+setInterval(desenhar, 170);
+</script>
+
+</body>
+</html>
