@@ -2,7 +2,7 @@
 
 Este é um projeto desenvolvido para praticar os fundamentos de **HTML5**, **CSS3** e os primeiros passos com **JavaScript**. O site apresenta um cartão de bio com efeito de vidro (Glassmorphism) e um jogo da cobrinha funcional.
 
-##Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 * **HTML5:** Estrutura semântica do projeto.
 * **CSS3:** * Animações de gradiente dinâmico no fundo.
