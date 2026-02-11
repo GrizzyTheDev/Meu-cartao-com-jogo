@@ -84,6 +84,12 @@ body {
     transition: 0.3s;
 }
 
+/* Seleciona o ícone dentro da classe .link */
+.link i {
+    margin-right: 8px; /* Dá um espaço entre o ícone e o texto */
+    font-size: 1.1rem;  /* Deixa o ícone levemente maior */
+}
+
 .link:hover {
     background-color: #0056b3;
     transform: scale(1.05);
